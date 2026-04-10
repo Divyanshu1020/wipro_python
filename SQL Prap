@@ -1,1 +1,117 @@
+Step 1: Convert to 1NF (First Normal Form)
+
+👉 Rule: No multi-valued attributes, atomic values only
+
+We split rows like this:
+
+VendorCode	VendorName	Phone	ProductCode	ProductDesc	Price	Grade	Discount
+
+vd001	AtoZSupplier	9090901010	pd001	Cement	400	A	4
+vd001	AtoZSupplier	9090901010	pd002	Bricks	80	B	8
+vd001	AtoZSupplier	9090901010	pd006	Cement	320	C	10
+vd002	Greatgravity	9191912233	pd003	Centrifugal pump	10000	A	4
+vd003	Powernet	8787871212	pd004	5g Internet	850	A	4
+vd004	Gomobile	8686861313	pd005	Mobile phone	20000	A	4
+vd004	Gomobile	8686861313	pd007	Feature phone	5000	C	10
+
+
+
+
+ProductDesc depend
+
+✅ Decompose into:
+
+1. Vendor Table
+
+VendorCode (PK)	VendorName	Phone
+
+vd001	AtoZSupplier	9090901010
+vd002	Greatgravity	9191912233
+vd003	Powernet	8787871212
+vd004	Gomobile	8686861313
+
+
+
+---
+
+2. Product Table
+
+ProductCode (PK)	ProductDesc
+
+pd001	Cement
+pd002	Bricks
+pd003	Centrifugal pump
+pd004	5g Internet
+pd005	Mobile phone
+pd006	Cement
+pd007	Feature phone
+
+
+
+---
+
+3. Vendor_Product Table
+
+VendorCode (FK)	ProductCode (FK)	Price	Grade	Discount
+
+vd001	pd001	400	A	4
+vd001	pd002	80	B	8
+vd001	pd006	320	C	10
+vd002	pd003	10000	A	4
+vd003	pd004	850	A	4
+vd004	pd005	20000	A	4
+vd004	pd007	5000	C	10
+
+
+
+---
+Step 3: Move to 3NF
+
+
+
+
+
+Final Decomposition (3NF)
+
+1. Vendor Table
+
+(same as above)
+
+2. Product Table
+
+(same as above)
+
+3. Vendor_Product Table
+
+VendorCode	ProductCode	Price	Grade
+
+
+
+
+---
+
+4. Grade Table (NEW)
+
+Grade (PK)	Discount
+
+A	4
+B	8
+C	10
+
+
+
+---
+
+✅ Final Answer (3NF Structure)
+
+You now have 4 tables:
+
+✔ Vendor(VendorCode, VendorName, Phone)
+
+✔ Product(ProductCode, ProductDesc)
+
+✔ Vendor_Product(VendorCode, ProductCode, Price, Grade)
+
+✔ Grade(Grade, Discount)
+
 
