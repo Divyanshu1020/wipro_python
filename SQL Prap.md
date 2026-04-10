@@ -1,4 +1,4 @@
-Step 1: Convert to 1NF (First Normal Form)
+'Step 1: Convert to 1NF (First Normal Form)
 
 👉 Rule: No multi-valued attributes, atomic values only
 
